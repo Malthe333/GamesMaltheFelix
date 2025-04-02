@@ -3,8 +3,8 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] public int maxHealth { get; private set; } = 10;
-    [HideInInspector, Tooltip("Current health")] public int health { get; private set; }
+    [SerializeField] private int maxHealth = 10;
+    [HideInInspector, Tooltip("Current health")] private int health;
 
     [HideInInspector] public UnityEvent deathEvents;
 
@@ -17,11 +17,21 @@ public class Health : MonoBehaviour
         health = maxHealth;
     }
 
+    public int CheckMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    public int CheckCurrentHealth()
+    {
+        return health;
+    }
+
     /// <summary>
     /// Whenever you wish to damage something, call this function
     /// </summary>
     /// <param name="amount"></param>
-    public void Damage(int amount)
+    public virtual void Damage(int amount)
     {
 #if UNITY_EDITOR
         if (amount < 1) Debug.LogWarning($"{name} is being damaged for {(amount == 0 ? "zero" : "negative amounts:" + amount)}");
@@ -39,7 +49,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void Restore(int amount)
+    public virtual void Restore(int amount)
     {
 #if UNITY_EDITOR
         if (amount < 1) Debug.LogWarning($"{name} is being healed for {(amount == 0 ? "zero" : "negative amounts:" + amount)}");
