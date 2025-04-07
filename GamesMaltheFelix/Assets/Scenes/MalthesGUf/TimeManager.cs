@@ -6,11 +6,8 @@ public class TimerManager : MonoBehaviour
 {
     public float maxTime = 20f;
     private float currentTime;
-
     public TextMeshProUGUI timerText;
-
-    public event Action OnTimerEnd;
-
+    public event Action OnTimerEnd; 
     void Start()
     {
         currentTime = maxTime;
@@ -26,7 +23,7 @@ public class TimerManager : MonoBehaviour
 
         if (currentTime <= 0f)
         {
-            OnTimerEnd?.Invoke(); // Fire the event
+            OnTimerEnd?.Invoke(); // Trigger eventen, men kun hvis den er subscribed til noget tror jeg.
             ResetTimer();
         }
     }
@@ -36,7 +33,7 @@ public class TimerManager : MonoBehaviour
         currentTime = maxTime;
     }
 
-    public float GetTimeRemaining()
+    public float GetTimeRemaining() // Et script til hvis vi skal bruge tiden til noget andet end at vise den på skærmen idk hvad.
     {
         return currentTime;
     }
