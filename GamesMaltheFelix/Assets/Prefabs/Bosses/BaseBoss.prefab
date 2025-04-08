@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd60f7b164f14c4086c750adfcbf0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 10
   deathEvents:
     m_PersistentCalls:
       m_Calls: []
@@ -79,13 +80,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6476809238450739105}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.2847497, y: 0.35851237, z: -0.10364043, w: 0.88297516}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1177600257132948583}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -25.375, y: 50, z: -25.375}
 --- !u!114 &6823193221382751902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +99,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4822cb467a1f82b47b18f425397f222b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 10
+  deathEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  damageEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  healingEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  masterHealth: {fileID: 8081321631273246219}
 --- !u!1 &8587283881237710394
 GameObject:
   m_ObjectHideFlags: 0
