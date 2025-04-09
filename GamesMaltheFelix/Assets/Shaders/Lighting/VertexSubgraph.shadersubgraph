@@ -1105,8 +1105,8 @@
     "m_ObjectId": "8a028afe4b2a4046b7f62219eed906d6",
     "m_Title": "Ambient Diffuse Lighting",
     "m_Position": {
-        "x": -1190.0001220703125,
-        "y": -889.0000610351563
+        "x": -1190.0,
+        "y": -889.0
     }
 }
 
