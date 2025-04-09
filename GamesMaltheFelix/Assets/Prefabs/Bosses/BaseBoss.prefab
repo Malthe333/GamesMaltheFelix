@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1747572669326360491}
   - component: {fileID: 8081321631273246219}
-  - component: {fileID: 675584610022896789}
   m_Layer: 0
   m_Name: BaseBoss
   m_TagString: Untagged
@@ -56,22 +55,6 @@ MonoBehaviour:
   healingEvents:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &675584610022896789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464721125306684001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1bc5f62bf1a1e1439f99c83fb2c099c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shadowMaterial: {fileID: 2100000, guid: 2c16a6c53906ea54dbc903c429886e9c, type: 2}
-  layersToCastShadowOn:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1 &6476809238450739105
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,6 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1177600257132948583}
+  - component: {fileID: 1706558692236107735}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -159,3 +143,20 @@ Transform:
   - {fileID: 8660865350978933145}
   m_Father: {fileID: 1747572669326360491}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1706558692236107735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8587283881237710394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1bc5f62bf1a1e1439f99c83fb2c099c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowMaterial: {fileID: 2100000, guid: 2c16a6c53906ea54dbc903c429886e9c, type: 2}
+  shadowSize: {x: 1, y: 1}
+  layersToCastShadowOn:
+    serializedVersion: 2
+    m_Bits: 64

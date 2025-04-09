@@ -3,6 +3,7 @@ using UnityEngine;
 public class ShadowCaster : MonoBehaviour
 {
     [SerializeField] private Material shadowMaterial;
+    [SerializeField, Tooltip("Size of shadow. Remember that shadow is a child object and is therefore already scaled based on the parent!")] private Vector2 shadowSize = Vector2.one;
     [SerializeField] private LayerMask layersToCastShadowOn = 64;
     private Transform shadowCarrier;
 
@@ -14,12 +15,14 @@ public class ShadowCaster : MonoBehaviour
         {
             Debug.LogWarning($"{name} has unassigned shadow material in it's ShadowCaster component. Removing ShadowCaster to avoid unnecessary computation");
             Destroy(this);
+            return;
         }
 
         shadowCarrier = GameObject.CreatePrimitive(PrimitiveType.Quad).transform;
         Destroy(shadowCarrier.GetComponent<Collider>());
         shadowCarrier.SetParent(transform);
         shadowCarrier.name = "Shadow";
+        shadowCarrier.localScale = new Vector3(shadowSize.x, shadowSize.y, 1);
         shadowCarrier.GetComponent<Renderer>().material = shadowMaterial;
     }
 
