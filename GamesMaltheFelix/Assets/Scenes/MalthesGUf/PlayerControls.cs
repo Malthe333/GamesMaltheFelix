@@ -6,7 +6,11 @@ public class PlayerControllerRB : MonoBehaviour
 {
    public Transform spawnPoint;
    public TimerManager timerManager;
-   
+
+    Animator animator;
+
+    AnimatorStateInfo previousState;
+    bool isReturning = false;
    
    [Header("Movement of Player")]
     
@@ -44,6 +48,7 @@ public class PlayerControllerRB : MonoBehaviour
     // OnTriggerEnter til Angrebet 
     void Start()
     {
+        animator = GetComponent<Animator>();
         recordDuration = timerManager.maxTime; // Er det her den rigtige måde at gøre det på? Tænkte hvis tiden sku ændres midt kamp etc. så sku vi måske have en anden måde at sætte 
     }
     void OnEnable() => controls.Player.Enable();
@@ -67,24 +72,36 @@ public class PlayerControllerRB : MonoBehaviour
     void Update()
     {
         
-       
-       
+       AnimatorStateInfo currentState = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (controls.Player.Attack.triggered && !isReturning && !currentState.IsName("Attack"))
+        {
+                previousState = currentState;
+                animator.SetTrigger("Attack");
+                isReturning = true;
+        }
         int maxFrames = Mathf.CeilToInt(recordDuration / Time.deltaTime);
         if (recording.Count > maxFrames)
             recording.RemoveAt(0);
+            if (isReturning)
+                    {
+                        
 
+                        if (currentState.IsName("Attack") && currentState.normalizedTime >= 1.0f)
+                        {
+                            // Return to previous state manually
+                            animator.Play(previousState.fullPathHash, 0, 0);
+                            isReturning = false;
+                        }
+                    }
         
     }
 
     void Attack()
     {
-        Debug.Log("Player Attack!");
-
-        
         if (recording.Count > 0)
             recording[recording.Count - 1].didAttack = true;
 
-       
     }
 
     void SpawnGhost()
