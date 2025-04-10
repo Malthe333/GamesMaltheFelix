@@ -82,7 +82,7 @@ public class PlayerControllerRB : MonoBehaviour
         if (controls.Player.Attack.triggered && !isReturning && !currentState.IsName("Attack"))
         {
                 previousState = currentState;
-                Debug.Log("Attack triggered Update");
+                
                 animator.SetTrigger("Attack");
                 isReturning = true;
         }
@@ -105,7 +105,6 @@ public class PlayerControllerRB : MonoBehaviour
     void Attack()
     {
         RotateTowardMouse();
-        Debug.Log("Attack triggered!");
         if (recording.Count > 0)
             recording[recording.Count - 1].didAttack = true;
     }

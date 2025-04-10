@@ -48,7 +48,6 @@ public class Health : MonoBehaviour
             damageEvents?.Invoke(health, amount);
         }
     }
-
     public virtual void Restore(int amount)
     {
 #if UNITY_EDITOR

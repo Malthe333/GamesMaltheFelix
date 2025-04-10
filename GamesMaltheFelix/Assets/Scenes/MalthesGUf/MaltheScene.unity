@@ -824,6 +824,7 @@ GameObject:
   - component: {fileID: 1053985225}
   - component: {fileID: 1053985224}
   - component: {fileID: 1053985227}
+  - component: {fileID: 1053985228}
   m_Layer: 0
   m_Name: "Sv\xE6rd"
   m_TagString: Untagged
@@ -892,7 +893,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 3940364a58223fd47a768263a0a24963, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -949,6 +950,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &1053985228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053985222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e250440b5abc9444fb8a989285944a21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  weakspotTag: Damageable
 --- !u!1 &1094651088
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,6 +980,7 @@ GameObject:
   - component: {fileID: 1094651094}
   - component: {fileID: 1094651095}
   - component: {fileID: 1094651096}
+  - component: {fileID: 1094651097}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1045,7 +1061,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2b5855db36552474898dd6fee3ddf399, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1108,7 +1124,7 @@ MonoBehaviour:
   timerManager: {fileID: 1540102231}
   moveSpeed: 5
   recording: []
-  ghostPrefab: {fileID: 356412398816176705, guid: b7d8a695025be594398d80956f4b4bde, type: 3}
+  ghostPrefab: {fileID: 6791075252865717431, guid: ce6e3163b6155644082f1a752307198f, type: 3}
 --- !u!95 &1094651095
 Animator:
   serializedVersion: 7
@@ -1144,6 +1160,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tracker: {fileID: 11400000, guid: 4bd2233ad45c0f649bbc8c000ef69681, type: 2}
+--- !u!114 &1094651097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094651088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1bc5f62bf1a1e1439f99c83fb2c099c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowMaterial: {fileID: 2100000, guid: 2c16a6c53906ea54dbc903c429886e9c, type: 2}
+  shadowSize: {x: 1, y: 1}
+  layersToCastShadowOn:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1470457817
 GameObject:
   m_ObjectHideFlags: 0
@@ -1676,6 +1709,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4507932062890876162, guid: a5df64a1051573d4a890f811480c545b, type: 3}
+      propertyPath: shadowSize.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507932062890876162, guid: a5df64a1051573d4a890f811480c545b, type: 3}
+      propertyPath: shadowSize.y
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1693,8 +1734,8 @@ GameObject:
   - component: {fileID: 1975995598}
   - component: {fileID: 1975995597}
   - component: {fileID: 1975995596}
-  m_Layer: 0
-  m_Name: Plane
+  m_Layer: 6
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1745,7 +1786,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 308c388a24b85e54a8e3a182b2353c46, type: 2}
+  - {fileID: 2100000, guid: 935bc106eff81b141849508502c561a0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

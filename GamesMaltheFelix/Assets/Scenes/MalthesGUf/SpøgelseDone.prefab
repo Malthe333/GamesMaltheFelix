@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 3887652180574038378}
   - component: {fileID: 8814497646133554780}
   - component: {fileID: 5128798937827720899}
-  - component: {fileID: 4339855657707255343}
   - component: {fileID: 4800929918333136742}
   - component: {fileID: -8106773917976119068}
   m_Layer: 0
@@ -141,39 +140,12 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &4339855657707255343
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6791075252865717431}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
 --- !u!95 &4800929918333136742
 Animator:
   serializedVersion: 7
@@ -308,6 +280,7 @@ GameObject:
   - component: {fileID: 3613596659110549123}
   - component: {fileID: 3431857825084989507}
   - component: {fileID: 6154564228759979310}
+  - component: {fileID: 892060447931097608}
   m_Layer: 0
   m_Name: "Sv\xE6rd"
   m_TagString: Untagged
@@ -433,3 +406,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &892060447931097608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8907518861088303573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e250440b5abc9444fb8a989285944a21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  weakspotTag: Damageable
