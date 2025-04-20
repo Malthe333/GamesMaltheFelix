@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using UnityEngine.InputSystem.XR.Haptics;
 
 public class PlayerControllerRB : MonoBehaviour
 {
@@ -48,62 +51,58 @@ public class PlayerControllerRB : MonoBehaviour
     void OnEnable() => controls.Player.Enable(); //Gode avaner at have, så vi ikke glemmer at enable og disable vores controls.
     void OnDisable() => controls.Player.Disable(); 
 
-
     void FixedUpdate() // Bruger FixedUpdate for at matche frameraten på rigidbodiens bevægelse
     {
+        AnimatorStateInfo currentState = animator.GetCurrentAnimatorStateInfo(0);
         Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y);
-        rb.MovePosition(rb.position + move * moveSpeed * Time.fixedDeltaTime);
+        rb.linearVelocity = move * moveSpeed; 
 
 
          if (move.sqrMagnitude > 0.001f) // Rotation.
     {
-        if (!isReturning) // Only rotate toward movement if NOT attacking
+        if (!isReturning && !currentState.IsName("Attack")) // Only rotate toward movement if NOT attacking
         {
             Quaternion moveRotation = Quaternion.LookRotation(move);
             transform.rotation = Quaternion.Slerp(transform.rotation, moveRotation, Time.deltaTime * 15f);
         }
     }
 
-         var data = new PlayerFrameData
+         if (!isReturning)
+{
+        var data = new PlayerFrameData
         {
             position = transform.position,
             rotation = transform.rotation,
             didAttack = false
         };
-        recording.Add(data);
-    }
-
-    void Update()
-    {
-        
-       
-       AnimatorStateInfo currentState = animator.GetCurrentAnimatorStateInfo(0);
-
-        if (controls.Player.Attack.triggered && !isReturning && !currentState.IsName("Attack"))
-        {
-                previousState = currentState;
-                
-                animator.SetTrigger("Attack");
-                isReturning = true;
-        }
-        int maxFrames = Mathf.CeilToInt(recordDuration / Time.deltaTime);
-        if (recording.Count > maxFrames)
-            recording.RemoveAt(0);
-            if (isReturning)
-                    {
-                        
-
-                        if (currentState.IsName("Attack") && currentState.normalizedTime >= 1.0f)
-                        {
-                            // Return to previous state manually
-                            animator.Play(previousState.fullPathHash, 0, 0);
-                            isReturning = false;
-                        }
-                    }
+            recording.Add(data); // Tilføjer data til listen af frames, så vi kan bruge det til at afspille spøgelset senere.
+}
     }
 
     void Attack()
     {
+        
+        AnimatorStateInfo currentState = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (isReturning || currentState.IsName("Attack")) return; // Prevents re-triggering the attack animation while rewinding
+        
+        previousState = currentState;
+        animator.SetTrigger("Attack");
+        
+        //int maxFrames = Mathf.CeilToInt(recordDuration / Time.deltaTime);
+        // if (recording.Count > maxFrames)
+        //     recording.RemoveAt(0);
+        //     if (isReturning)
+        //             {
+                        
+
+        //                 if (currentState.IsName("Attack") && currentState.normalizedTime >= 1.0f)
+        //                 {
+        //                     // Return to previous state manually
+        //                     animator.Play(previousState.fullPathHash, 0, 0);
+        //                     isReturning = false;
+        //                 }
+        //             }
         RotateTowardMouse();
         if (recording.Count > 0)
             recording[recording.Count - 1].didAttack = true;
@@ -136,21 +135,89 @@ public class PlayerControllerRB : MonoBehaviour
 
     void SpawnGhost()
 {
+    List<PlayerFrameData> rewindData = new List<PlayerFrameData>(recording);
     if (spawnPoint != null)
     {
-        transform.position = spawnPoint.position;
-        transform.rotation = spawnPoint.rotation;
+        // transform.position = spawnPoint.position;
+        // transform.rotation = spawnPoint.rotation;
+        recording.Clear(); // Uncomment den her hvis det ik virker
+        
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb != null)
             rb.linearVelocity = Vector3.zero; // SKal man bruge Linær velocity her?
     }
 
     // Spawner spøgelset på samme sted som spawnpointet.
+    /*
     GameObject ghost = Instantiate(ghostPrefab, spawnPoint.position, spawnPoint.rotation);
     GhostReplayer replayer = ghost.GetComponent<GhostReplayer>();
-    replayer.playbackData = new List<PlayerFrameData>(recording);
+    replayer.playbackData = rewindData.Select(frame => new PlayerFrameData
+{
+    position = frame.position,
+    rotation = frame.rotation,
+    didAttack = frame.didAttack
+    }).ToList();
+    */
 
-    recording.Clear(); 
+    
+    StartCoroutine(RewindPlayer(rewindData));
+}
+
+    IEnumerator RewindPlayer(List<PlayerFrameData> rewindData)
+{
+    isReturning = true;
+    timerManager?.PauseTimer(); // Pauser timeren når vi spoler tilbage så vi ikke optager mens vi spoler tilbage.
+
+    int frameCount = rewindData.Count;
+    if (frameCount == 0)
+    {
+        isReturning = false;
+        yield break;
+    }
+
+    float rewindDuration = 0.5f;
+    float elapsed = 0f;
+
+    // Disable control and physics during rewind
+    controls.Player.Disable();
+    rb.isKinematic = true;
+
+    while (elapsed < rewindDuration)
+    {
+        float t = elapsed / rewindDuration;
+        // Convert t from [0,1] into an index from end to start
+        float rawIndex = Mathf.Lerp(frameCount - 1, 0, t);
+        int lowerIndex = Mathf.FloorToInt(rawIndex);
+        int upperIndex = Mathf.Clamp(lowerIndex + 1, 0, frameCount - 1);
+        float lerpT = rawIndex - lowerIndex;
+
+        Vector3 pos = Vector3.Lerp(rewindData[lowerIndex].position, rewindData[upperIndex].position, lerpT);
+        Quaternion rot = Quaternion.Slerp(rewindData[lowerIndex].rotation, rewindData[upperIndex].rotation, lerpT);
+
+        transform.position = pos;
+        transform.rotation = rot;
+
+        elapsed += Time.deltaTime;
+        yield return null;
+    }
+
+    // Snap to first frame to ensure accuracy
+    transform.position = rewindData[0].position;
+    transform.rotation = rewindData[0].rotation;
+
+    rb.isKinematic = false;
+    controls.Player.Enable();
+    isReturning = false;
+
+
+    timerManager?.ResetTimer(); // Resetter timeren når vi er færdige med at spole tilbage.
+
+    if (ghostPrefab != null && spawnPoint != null)
+{
+    GameObject ghost = Instantiate(ghostPrefab, spawnPoint.position, spawnPoint.rotation);
+    GhostReplayer replayer = ghost.GetComponent<GhostReplayer>();
+    replayer.playbackData = new List<PlayerFrameData>(rewindData);
+}
 }
 }
 
