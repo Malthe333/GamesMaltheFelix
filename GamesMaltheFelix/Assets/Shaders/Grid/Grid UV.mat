@@ -50,8 +50,8 @@ Material:
     - _CastShadows: 0
     - _Cull: 2
     - _DstBlend: 10
-    - _Grid_Density: 10
-    - _Line_Size: 0.005
+    - _Grid_Density: 3
+    - _Line_Size: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5
