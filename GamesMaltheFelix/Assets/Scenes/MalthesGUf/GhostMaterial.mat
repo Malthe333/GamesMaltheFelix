@@ -115,6 +115,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
     - _DstBlendAlpha: 0
+    - _EWG_Density: 3
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -133,6 +134,7 @@ Material:
     - _SrcBlend: 5
     - _SrcBlendAlpha: 1
     - _Surface: 1
+    - _WEG_Movement: 0.05
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 0
@@ -141,9 +143,10 @@ Material:
     - _BaseColor: {r: 0.15069413, g: 0.32912114, b: 0.9622642, a: 1}
     - _Color: {r: 0.1506941, g: 0.3291211, b: 0.9622641, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Grid_Color: {r: 0, g: 1, b: 1, a: 1}
-    - _Grid_Movement: {r: 0, g: 0, b: 0, a: 0}
-    - _Main_Color: {r: 0.22761652, g: 0.36221334, b: 0.8773585, a: 0.94509804}
+    - _Grid_Color: {r: 0, g: 1, b: 1, a: 0.2509804}
+    - _Grid_Density: {r: 3, g: 3, b: 0, a: 0}
+    - _Grid_Movement: {r: 0.05, g: 0.05, b: 0, a: 0}
+    - _Main_Color: {r: 0.22761646, g: 0.36221328, b: 0.8773585, a: 0.2509804}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
