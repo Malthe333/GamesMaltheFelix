@@ -51,7 +51,7 @@ Material:
     - _Cull: 2
     - _DstBlend: 10
     - _Grid_Density: 3
-    - _Line_Size: 0.1
+    - _Line_Size: 0.141
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5
