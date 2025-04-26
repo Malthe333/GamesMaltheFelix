@@ -645,7 +645,7 @@
                 "m_Node": {
                     "m_Id": "3556cbd1b38946fba7354cc22d9d13f1"
                 },
-                "m_SlotId": 1495180218
+                "m_SlotId": -1877599783
             }
         },
         {
@@ -902,6 +902,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "0446772489984cbf9de3a68146f49323",
+    "m_Id": -2111593176,
+    "m_DisplayName": "EWG Density",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_EWG_Density",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.SplitNode",
     "m_ObjectId": "04ba81b7cb914995968dbb0b15a7710d",
     "m_Group": {
@@ -1116,21 +1131,6 @@
         "z": 0.0,
         "w": 0.0
     }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "0df0a3832752478da2ff9ff6cab596e5",
-    "m_Id": -470691518,
-    "m_DisplayName": "Grid DensityF",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "_Grid_DensityF",
-    "m_StageCapability": 3,
-    "m_Value": 1.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
 }
 
 {
@@ -1816,10 +1816,10 @@
     },
     "m_Slots": [
         {
-            "m_Id": "8c704c166c354e4c9d209c164391c935"
+            "m_Id": "4883f7a66b4b4c77a55a55925d3beb9a"
         },
         {
-            "m_Id": "0df0a3832752478da2ff9ff6cab596e5"
+            "m_Id": "ad011318b1f74e8db988023c6e37e289"
         },
         {
             "m_Id": "f843edc78884467c87978032fc49a9a2"
@@ -1828,7 +1828,13 @@
             "m_Id": "6bf20048ec8c4d6a8d6d19726666d82c"
         },
         {
-            "m_Id": "ad011318b1f74e8db988023c6e37e289"
+            "m_Id": "8c704c166c354e4c9d209c164391c935"
+        },
+        {
+            "m_Id": "0446772489984cbf9de3a68146f49323"
+        },
+        {
+            "m_Id": "68dde8f151b54f81940ce34e55ded8c1"
         },
         {
             "m_Id": "fee8c5c1267e4f03aafb364bc155f259"
@@ -1850,7 +1856,10 @@
         "21f769b5-f60c-4943-9776-a2ac9ce3079d",
         "50bb0b28-8041-48b4-93e3-7f7851084cb7",
         "9075f4a3-8b60-4615-9d34-d2a61c9a4393",
-        "be41cdfc-f8c1-434e-8852-94e46cd17579"
+        "be41cdfc-f8c1-434e-8852-94e46cd17579",
+        "f5134bb6-4630-4aec-bdd2-e3b1e2c60a9e",
+        "5a9ca0d4-6902-4f33-9887-845f66eb08c8",
+        "d60a5163-b724-4c12-be13-926a0763d052"
     ],
     "m_PropertyIds": [
         1495180218,
@@ -1859,7 +1868,10 @@
         1494289074,
         -683908949,
         -470691518,
-        1626257113
+        1626257113,
+        -1877599783,
+        -2111593176,
+        -1571121410
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
@@ -2308,6 +2320,27 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
+    "m_ObjectId": "4883f7a66b4b4c77a55a55925d3beb9a",
+    "m_Id": -1877599783,
+    "m_DisplayName": "Line Sizes",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Line_Sizes",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.10000000149011612,
+        "y": 0.10000000149011612
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "m_Labels": []
 }
 
 {
@@ -3027,6 +3060,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "68dde8f151b54f81940ce34e55ded8c1",
+    "m_Id": -1571121410,
+    "m_DisplayName": "EWG Offset",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_EWG_Offset",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "6974d5a630f14e639f6049e88300984b",
     "m_Group": {
@@ -3703,10 +3751,10 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "8c704c166c354e4c9d209c164391c935",
     "m_Id": 1495180218,
-    "m_DisplayName": "Line Size",
+    "m_DisplayName": "EWG Line Size",
     "m_SlotType": 0,
     "m_Hidden": false,
-    "m_ShaderOutputName": "_Line_Size",
+    "m_ShaderOutputName": "_EWG_Line_Size",
     "m_StageCapability": 3,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
@@ -4875,8 +4923,8 @@
     "m_ObjectId": "d34368a308d048a8910006d08edab84a",
     "m_Title": "Slash Tip Gradient",
     "m_Position": {
-        "x": -1905.0,
-        "y": 975.000244140625
+        "x": -1904.9998779296875,
+        "y": 974.9998168945313
     }
 }
 

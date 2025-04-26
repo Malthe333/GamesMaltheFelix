@@ -51,6 +51,7 @@ Material:
     - _Cull: 2
     - _DstBlend: 10
     - _EWG_Density: 5
+    - _EWG_Line_Size: 0.1
     - _Grid_Density: 2
     - _Line_Size: 0.1
     - _QueueControl: 0
@@ -68,6 +69,7 @@ Material:
     - _Grid_Color: {r: 0, g: 1, b: 1, a: 1}
     - _Grid_Density: {r: 5, g: 5, b: 0, a: 0}
     - _Grid_Movement: {r: 0, g: 0, b: 0, a: 0}
+    - _Line_Sizes: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _Main_Color: {r: 0, g: 0, b: 1, a: 0.39215687}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
