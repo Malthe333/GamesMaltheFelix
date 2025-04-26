@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: adeac6ab175e0674186c1e53411eedc6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - spawnPoint: {instanceID: 0}
+  - timerManager: {instanceID: 0}
+  - playerAnimator: {instanceID: 0}
+  - ghostPrefab: {fileID: 6791075252865717431, guid: ce6e3163b6155644082f1a752307198f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
