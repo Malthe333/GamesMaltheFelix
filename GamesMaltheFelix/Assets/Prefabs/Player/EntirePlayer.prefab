@@ -52,7 +52,7 @@ MonoBehaviour:
   timerManager: {fileID: 0}
   playerAnimator: {fileID: 1323749709094154847}
   moveSpeed: 5
-  ghostPrefab: {fileID: 6791075252865717431, guid: ce6e3163b6155644082f1a752307198f, type: 3}
+  ghostPrefab: {fileID: 1093997433663461600, guid: efee9e8d7a16dc74f99d916821d96462, type: 3}
 --- !u!54 &7504324466530841948
 Rigidbody:
   m_ObjectHideFlags: 0
