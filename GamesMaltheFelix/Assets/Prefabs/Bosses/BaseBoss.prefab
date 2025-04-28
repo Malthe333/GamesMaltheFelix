@@ -65,7 +65,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8660865350978933145}
   - component: {fileID: 6823193221382751902}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Weakspot
   m_TagString: Damageable
   m_Icon: {fileID: 0}
