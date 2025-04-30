@@ -95,7 +95,7 @@ public class MainMenuManager : MonoBehaviour
         if (t >= 1f)
         {
             transitioning = false;
-            musicBattle.Play();
+            
 
             // After the animation, assign follow target
             vCam.Follow = player;
@@ -132,6 +132,10 @@ public class MainMenuManager : MonoBehaviour
             
         }
 
+
+
+    // Channel 1 til Default
+    // Channel 2 til at zoome ind på robotten
 
     IEnumerator LoadStartScreen()
     {

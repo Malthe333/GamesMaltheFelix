@@ -2999,14 +2999,20 @@ PrefabInstance:
       propertyPath: maxTime
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4182472703739208570, guid: 53ec0fc79390f044dbc086f1d9cd9dbb, type: 3}
+      propertyPath: customCursorUI
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8765912820844159963, guid: 53ec0fc79390f044dbc086f1d9cd9dbb, type: 3}
+    - {fileID: 2750219024995060820, guid: 53ec0fc79390f044dbc086f1d9cd9dbb, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3223353565948692697, guid: 53ec0fc79390f044dbc086f1d9cd9dbb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 539884716}
     - targetCorrespondingSourceObject: {fileID: 459840948950705277, guid: 53ec0fc79390f044dbc086f1d9cd9dbb, type: 3}
-      insertIndex: 1
+      insertIndex: -1
       addedObject: {fileID: 2069316039}
     - targetCorrespondingSourceObject: {fileID: 4709084357228832368, guid: 53ec0fc79390f044dbc086f1d9cd9dbb, type: 3}
       insertIndex: -1
