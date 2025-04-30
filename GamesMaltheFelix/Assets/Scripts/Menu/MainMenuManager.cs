@@ -1,8 +1,5 @@
 using UnityEngine;
 using Unity.Cinemachine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using Unity.VisualScripting;
 using System.Collections;
 
 public class MainMenuManager : MonoBehaviour
@@ -11,6 +8,10 @@ public class MainMenuManager : MonoBehaviour
 
     public CinemachineCamera vCam;
     public Transform zoomOutTarget;
+
+    public CinemachineBrain brain;
+
+    public OutputChannels outputChannels;
     public Transform player;
     public float transitionDuration = 2f;
 
@@ -27,21 +28,35 @@ public class MainMenuManager : MonoBehaviour
     private Vector3 startPos;
     private Quaternion startRot;
 
+
+    // 3 Kamera indstillinger   
+    public Transform playerTargetZoomIn;  // The target to move toward
+    public float moveDuration = 2f;       // Duration of the movement in seconds
+
+    private Vector3 startPosition;
+    private float elapsedTime;
+    private bool isMoving = false;
+
+
     [Header("Audio Clips")]
 
-   
     public AudioSource musicBattle;
     public AudioSource musicMenu;
     public AudioSource audioStartRobot;
 
     [Header("Audio Settings")]
-
     public float fadeMusicDuration = 1f;
-
-
 
     [Header("Animation Settings")]
     public Animator playerAnimator;
+
+    [Header("UI Components")]
+
+    public GameObject menuUI;
+
+    public GameObject timerUI;
+
+
     
 
 
@@ -92,6 +107,7 @@ public class MainMenuManager : MonoBehaviour
         vCam.transform.position = Vector3.Lerp(startPos, zoomOutTarget.position, t);
         vCam.transform.rotation = Quaternion.Slerp(startRot, zoomOutTarget.rotation, t);
 
+        /*
         if (t >= 1f)
         {
             transitioning = false;
@@ -116,9 +132,10 @@ public class MainMenuManager : MonoBehaviour
                 hardLookAt = vCam.gameObject.AddComponent<CinemachineHardLookAt>();
             }
             
-
            
         }
+        */
+
     }
 
     // End Camera Settings
@@ -141,7 +158,7 @@ public class MainMenuManager : MonoBehaviour
     {
         audioStartRobot.Play();
         float startVolume = musicMenu.volume;
-
+        brain.ChannelMask = (OutputChannels)1;// Skifter til kamera i luften
         float t = 0;
         while (t < fadeMusicDuration)
         {
@@ -153,7 +170,9 @@ public class MainMenuManager : MonoBehaviour
         musicMenu.Stop();
         
         yield return new WaitForSeconds(2); // Venter på at opstartslyden stopper
-        StartZoomOut();
+       
+        brain.ChannelMask = (OutputChannels)2; // Skifter til kamera i luften
+
 
         yield return new WaitForSeconds(2); // Imens vi zoomer ud spiller animationen
         playerAnimator.SetTrigger("TurningOn"); // Trigger animationen
