@@ -8,17 +8,18 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: EyesMask
-  m_Shader: {fileID: -6465566751694194690, guid: 3a49a1833e328634f8cf063b74fdd0d6, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 39314f30868047e4396b863a8a638734, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _COORDINATE_SPACE_UV
+  - _RECEIVE_SHADOWS_OFF
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
@@ -46,6 +47,7 @@ Material:
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
+    - _BlendModePreserveSpecular: 0
     - _COORDINATE_SPACE: 2
     - _CastShadows: 0
     - _Cull: 2
@@ -56,21 +58,23 @@ Material:
     - _Line_Size: 0.141
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ReceiveShadows: 0
     - _SrcBlend: 5
     - _Surface: 1
     - _WEG_Movement: 0
     - _WEG_Offset: 0
+    - _WorkflowMode: 1
     - _World_Space_Grid: 0
     - _ZTest: 4
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
     - _Grid_Box_Dimensions: {r: 10, g: 10, b: 0, a: 0}
-    - _Grid_Color: {r: 1, g: 1, b: 0, a: 1}
-    - _Grid_Density: {r: 10, g: 10, b: 0, a: 0}
-    - _Grid_Movement: {r: 0, g: 0, b: 0, a: 0}
-    - _Line_Sizes: {r: 0.1, g: 0.1, b: 0, a: 0}
-    - _Main_Color: {r: 1, g: 0, b: 0, a: 1}
+    - _Grid_Color: {r: 2.9960787, g: 2.9960787, b: 0, a: 1}
+    - _Grid_Density: {r: 5, g: 10, b: 0, a: 0}
+    - _Grid_Movement: {r: 0.05, g: -0.15, b: 0, a: 0}
+    - _Line_Sizes: {r: 0.05, g: 0.1, b: 0, a: 0}
+    - _Main_Color: {r: 1.4980392, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &3452390107541737283

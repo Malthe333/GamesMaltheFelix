@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class CameraZoomIn : MonoBehaviour
 {
@@ -7,9 +8,16 @@ public class CameraZoomIn : MonoBehaviour
     public Material maskMaterial;
 
     [Header("Material Fade Settings")]
-     public float fadeDuration = 2f;
+    [SerializeField, ColorUsage(true, true)] private Color offMainColor = Color.gray1;
+    [SerializeField, ColorUsage(true, true)] private Color onMainColor = Color.red;
+    [SerializeField, ColorUsage(true, true)] private Color offGridColor = Color.gray3;
+    [SerializeField, ColorUsage(true, true)] private Color onGridColor = Color.yellow;
+    [SerializeField] private Vector2 onGridMovement = new Vector2(0.05f, -0.15f);
+    [SerializeField] private float fadeDuration = 2f;
 
-     private readonly string colorPropertyName = "_Main_Color";
+    private readonly string colorPropertyName = "_Main_Color";
+    private readonly string gridPropertyName = "_Grid_Color";
+    private readonly string gridMovementName = "_Grid_Movement";
 
     [Header("Camera Settings")]
     public GameObject objectToMove;      // The GameObject that will be moved
@@ -20,51 +28,38 @@ public class CameraZoomIn : MonoBehaviour
 
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Turn off color
+        maskMaterial.SetColor(colorPropertyName, offMainColor);
+        maskMaterial.SetColor(gridPropertyName, offGridColor);
+        maskMaterial.SetVector(gridMovementName, Vector2.zero);
     }
 
     public void StartTheMovement()
     {
-        
-            StartCoroutine(MoveCameraTowardsRobot());
-            StartCoroutine(LightUpMaterial());
-            Color color = maskMaterial.GetColor(colorPropertyName);
-            color.a = 0f;
-            maskMaterial.SetColor(colorPropertyName, color);
-        
+        StartCoroutine(MoveCameraTowardsRobot());
     }
 
 
-    public System.Collections.IEnumerator LightUpMaterial()
+    public IEnumerator LightUpMaterial()
     {
-
-        Color color = maskMaterial.GetColor(colorPropertyName);
-        float startAlpha = 0f;
-        float endAlpha = 1f;
         float elapsed = 0f;
 
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / fadeDuration);
-            color.a = Mathf.Lerp(startAlpha, endAlpha, t);
-            maskMaterial.SetColor(colorPropertyName, color);
+            maskMaterial.SetColor(colorPropertyName, Color.Lerp(offMainColor, onMainColor, t));
+            maskMaterial.SetColor(gridPropertyName, Color.Lerp(offGridColor, onGridColor, t));
+            maskMaterial.SetVector(gridMovementName, Vector2.Lerp(Vector2.zero, onGridMovement, t));
             yield return null;
         }
 
-        color.a = endAlpha;
-        maskMaterial.SetColor(colorPropertyName, color);
-
-        
+        maskMaterial.SetColor(colorPropertyName, onMainColor);
+        maskMaterial.SetColor(gridPropertyName, onGridColor);
+        maskMaterial.SetVector(gridMovementName, onGridMovement);
     }
 
-    public System.Collections.IEnumerator MoveCameraTowardsRobot()
+    public IEnumerator MoveCameraTowardsRobot()
     {
         yield return new WaitForSeconds(1.5f); // Optional delay before starting the movement
         isMoving = true;
@@ -79,6 +74,8 @@ public class CameraZoomIn : MonoBehaviour
             objectToMove.transform.position = Vector3.Lerp(startPos, endPos, t);
             yield return null;
         }
+
+        StartCoroutine(LightUpMaterial());
 
         objectToMove.transform.position = endPos;
         isMoving = false;
