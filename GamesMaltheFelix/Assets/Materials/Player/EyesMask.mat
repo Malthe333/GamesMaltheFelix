@@ -70,11 +70,11 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _Grid_Box_Dimensions: {r: 10, g: 10, b: 0, a: 0}
-    - _Grid_Color: {r: 0, g: 86.32253, b: 95.8745, a: 1}
+    - _Grid_Color: {r: 35.274582, g: 176.18347, b: 191.74898, a: 1}
     - _Grid_Density: {r: 5, g: 10, b: 0, a: 0}
     - _Grid_Movement: {r: 0.05, g: -0.15, b: 0, a: 0}
     - _Line_Sizes: {r: 0.05, g: 0.1, b: 0, a: 0}
-    - _Main_Color: {r: 1.4980392, g: 0, b: 0, a: 1}
+    - _Main_Color: {r: 3.3584905, g: 0.047525723, b: 0.047525723, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &3452390107541737283
