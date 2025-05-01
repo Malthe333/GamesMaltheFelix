@@ -40,7 +40,6 @@ public class MainMenuManager : MonoBehaviour
 
     [Header("Audio Clips")]
 
-    public AudioSource musicBattle;
     public AudioSource musicMenu;
     public AudioSource audioStartRobot;
 
@@ -48,7 +47,7 @@ public class MainMenuManager : MonoBehaviour
     public float fadeMusicDuration = 1f;
 
     [Header("Animation Settings")]
-    public Animator playerAnimator;
+    //public Animator playerAnimator;
 
     [Header("Events")]
 
@@ -57,8 +56,6 @@ public class MainMenuManager : MonoBehaviour
     [Header("UI Components")]
 
     public GameObject menuUI;
-
-    public GameObject timerUI;
 
     public CanvasGroup MenuUIFadeGroup; // Reference to the CanvasGroup component for fading out the menu UI
 
@@ -179,7 +176,7 @@ public class MainMenuManager : MonoBehaviour
         yield return new WaitForSeconds(2); // Imens vi zoomer ud spiller animationen
 
         
-        // playerAnimator.SetTrigger("TurningOn"); // Trigger animationen
+        
         // TimerManager.hasStarted = true; // Starter timeren
         // timerUI.SetActive(true); // Aktiverer timeren
         // musicBattle.Play(); // Spiller battle musikken

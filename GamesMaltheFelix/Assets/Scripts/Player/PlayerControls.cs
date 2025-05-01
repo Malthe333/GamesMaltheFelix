@@ -14,6 +14,10 @@ public class PlayerControllerRB : MonoBehaviour
     Camera mainCamera;
     [Tooltip("This is used to calculate movement in accordance to the camera rotation")] private Transform mainCamTrans;
 
+    [Header("Start Recording")]
+
+    private bool HasStarted = false;
+
     [Header("Movement of Player")]
     [SerializeField, Tooltip("Movement speed of the player")] private float moveSpeed = 5f;
     private Vector2 moveInput;
@@ -26,7 +30,11 @@ public class PlayerControllerRB : MonoBehaviour
 
 
 
-
+    public void StartRecording()
+    {
+        HasStarted = true; // Sætter hasStarted til true, når timeren starter..
+        recording.Clear(); // Clear the recording list when starting a new recording just in case
+    }
     void Awake()
     {
         if (timerManager != null)
@@ -74,7 +82,7 @@ public class PlayerControllerRB : MonoBehaviour
             }
          }
 
-         if (!isReturning)
+         if (!isReturning && HasStarted)
          {
             var data = new PlayerFrameData
             {
@@ -107,29 +115,12 @@ public class PlayerControllerRB : MonoBehaviour
         if (isReturning || currentState.IsName("Attack")) return; // Prevents re-triggering the attack animation while rewinding
         
         playerAnimator.SetTrigger("Attack");
-        
-        //int maxFrames = Mathf.CeilToInt(recordDuration / Time.deltaTime);
-        // if (recording.Count > maxFrames)
-        //     recording.RemoveAt(0);
-        //     if (isReturning)
-        //             {
-                        
-
-        //                 if (currentState.IsName("Attack") && currentState.normalizedTime >= 1.0f)
-        //                 {
-        //                     // Return to previous state manually
-        //                     animator.Play(previousState.fullPathHash, 0, 0);
-        //                     isReturning = false;
-        //                 }
-        //             }
         RotateTowardMouse();
         if (recording.Count > 0)
             recording[recording.Count - 1].didAttack = true;
     }
 
-    // OnTriggerEnter
-    // if other.tag == "Damageable"
-    // other.tag.GetComponent<Damageable>().TakeDamage(1); // Kan være en god ide at lave en Damageable script som kan bruges til at tage damage fra spilleren.
+  
     void RotateTowardMouse()
     {
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());

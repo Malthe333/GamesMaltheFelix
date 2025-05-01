@@ -10,7 +10,7 @@ public class TimerManager : MonoBehaviour
     private bool isRunning = true;
 
 
-    [HideInInspector] public static bool hasStarted = false;
+    public bool hasStarted = false;
     public TextMeshProUGUI timerText;
 
     public delegate void TimerEndAction(); // Definerer en delegate til at håndtere timerens slutning.
@@ -20,6 +20,11 @@ public class TimerManager : MonoBehaviour
         currentTime = maxTime;
     }
 
+
+    public void StartTimer()
+    {
+        hasStarted = true; // Sætter hasStarted til true, når timeren starter..
+    }
     void Update()
     {
         if (isRunning && hasStarted)
