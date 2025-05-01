@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
+using UnityEngine.Events;
 
 public class PlayerControllerRB : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class PlayerControllerRB : MonoBehaviour
     private List<PlayerFrameData> recording = new List<PlayerFrameData>(); // Behøver den her at være public?
     [Header("Ghost Recording")]
     [SerializeField] private GameObject ghostPrefab;
+    [SerializeField] private UnityEvent rewindBeginEvent;
+    [SerializeField] private UnityEvent rewindEndEvent;
 
 
 
@@ -174,6 +177,7 @@ public class PlayerControllerRB : MonoBehaviour
 
     IEnumerator RewindPlayer(List<PlayerFrameData> rewindData)
     {
+        rewindBeginEvent?.Invoke();
         isReturning = true;
         timerManager?.PauseTimer(); // Pauser timeren når vi spoler tilbage så vi ikke optager mens vi spoler tilbage.
 
@@ -233,6 +237,8 @@ public class PlayerControllerRB : MonoBehaviour
             GhostReplayer replayer = ghost.GetComponent<GhostReplayer>();
             replayer.playbackData = new List<PlayerFrameData>(rewindData);
         }
+
+        rewindEndEvent?.Invoke();
     }
 }
 
