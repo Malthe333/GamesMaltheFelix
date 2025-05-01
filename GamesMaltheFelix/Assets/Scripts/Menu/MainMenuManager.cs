@@ -6,6 +6,8 @@ public class MainMenuManager : MonoBehaviour
 {
     [Header("Camera Settings")]
 
+    
+    public CameraZoomIn cameraZoomIn; // Reference to the CameraZoomIn script
     public CinemachineCamera vCam;
     public Transform zoomOutTarget;
 
@@ -30,12 +32,9 @@ public class MainMenuManager : MonoBehaviour
 
 
     // 3 Kamera indstillinger   
-    public Transform playerTargetZoomIn;  // The target to move toward
+    //public transform playerTargetZoomIn;  // The target to move toward
     public float moveDuration = 2f;       // Duration of the movement in seconds
 
-    private Vector3 startPosition;
-    private float elapsedTime;
-    private bool isMoving = false;
 
 
     [Header("Audio Clips")]
@@ -55,6 +54,10 @@ public class MainMenuManager : MonoBehaviour
     public GameObject menuUI;
 
     public GameObject timerUI;
+
+    public CanvasGroup MenuUIFadeGroup; // Reference to the CanvasGroup component for fading out the menu UI
+
+    private float fadeDurationMenu = 1f; // Duration of the fade-out effect
 
 
     
@@ -107,34 +110,6 @@ public class MainMenuManager : MonoBehaviour
         vCam.transform.position = Vector3.Lerp(startPos, zoomOutTarget.position, t);
         vCam.transform.rotation = Quaternion.Slerp(startRot, zoomOutTarget.rotation, t);
 
-        /*
-        if (t >= 1f)
-        {
-            transitioning = false;
-            
-
-            // After the animation, assign follow target
-            vCam.Follow = player;
-            vCam.LookAt = player;
-            var transposer = vCam.GetCinemachineComponent(CinemachineCore.Stage.Body) as CinemachineFollow;
-            if (transposer == null)
-            {
-                transposer = vCam.GetCinemachineComponent(CinemachineCore.Stage.Body) as CinemachineFollow;
-                if (transposer == null)
-                {
-                    transposer = vCam.gameObject.AddComponent<CinemachineFollow>();
-                }
-            }
-
-            var hardLookAt = vCam.GetCinemachineComponent(CinemachineCore.Stage.Aim) as CinemachineHardLookAt;
-            if (hardLookAt == null)
-            {
-                hardLookAt = vCam.gameObject.AddComponent<CinemachineHardLookAt>();
-            }
-            
-           
-        }
-        */
 
     }
 
@@ -144,6 +119,7 @@ public class MainMenuManager : MonoBehaviour
         public void OnTurnOnButtonPressed()
         {
             StartCoroutine(LoadStartScreen());
+            StartCoroutine(FadeOutMenuUI()); // Fade out menu UI
             TurnOnHasBeenPressed = true;
             
             
@@ -154,11 +130,31 @@ public class MainMenuManager : MonoBehaviour
     // Channel 1 til Default
     // Channel 2 til at zoome ind på robotten
 
+
+
+    IEnumerator FadeOutMenuUI()
+    {
+        float t = 0;
+        while (t < fadeDurationMenu)
+        {
+            t += Time.deltaTime;
+            MenuUIFadeGroup.alpha = Mathf.Lerp(1, 0, t / fadeDurationMenu);
+            yield return null;
+        }
+
+        menuUI.SetActive(false); // Deaktiverer menu UI'en efter fade-out
+    }
+
+
     IEnumerator LoadStartScreen()
     {
         audioStartRobot.Play();
+        cameraZoomIn.StartTheMovement(); // Kalder funktionen til at zoome ind på robotten
+        brain.ChannelMask = (OutputChannels)4;// Skifter til kamera som zoomer ind på robotten
+        
+        
         float startVolume = musicMenu.volume;
-        brain.ChannelMask = (OutputChannels)1;// Skifter til kamera i luften
+        
         float t = 0;
         while (t < fadeMusicDuration)
         {
@@ -169,13 +165,25 @@ public class MainMenuManager : MonoBehaviour
 
         musicMenu.Stop();
         
-        yield return new WaitForSeconds(2); // Venter på at opstartslyden stopper
+        yield return new WaitForSeconds(5); // Venter på at opstartslyden stopper
        
-        brain.ChannelMask = (OutputChannels)2; // Skifter til kamera i luften
+        brain.ChannelMask = (OutputChannels)1; // Skifter til kamera i luften
+
 
 
         yield return new WaitForSeconds(2); // Imens vi zoomer ud spiller animationen
+
+        
         playerAnimator.SetTrigger("TurningOn"); // Trigger animationen
+        TimerManager.hasStarted = true; // Starter timeren
+        timerUI.SetActive(true); // Aktiverer timeren
+        musicBattle.Play(); // Spiller battle musikken
+
+
+
+
+
+
     }
 
 

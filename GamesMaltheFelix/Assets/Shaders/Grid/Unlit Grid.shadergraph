@@ -1708,7 +1708,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "723bd1e01cfd4754af7a31f3f32afd79",
     "m_Id": 0,
-    "m_DisplayName": "Line Size",
+    "m_DisplayName": "EWG Line Size",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

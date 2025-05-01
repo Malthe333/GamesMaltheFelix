@@ -8,6 +8,9 @@ public class TimerManager : MonoBehaviour
     private float currentTime;
 
     private bool isRunning = true;
+
+
+    [HideInInspector] public static bool hasStarted = false;
     public TextMeshProUGUI timerText;
 
     public delegate void TimerEndAction(); // Definerer en delegate til at håndtere timerens slutning.
@@ -19,7 +22,7 @@ public class TimerManager : MonoBehaviour
 
     void Update()
     {
-        if (isRunning)
+        if (isRunning && hasStarted)
         {
             currentTime -= Time.deltaTime;
             currentTime = Mathf.Max(0f, currentTime);
