@@ -12,7 +12,6 @@ public class CameraZoomIn : MonoBehaviour
     [SerializeField, ColorUsage(true, true)] private Color onMainColor = Color.red;
     [SerializeField, ColorUsage(true, true)] private Color offGridColor = Color.gray3;
     [SerializeField, ColorUsage(true, true)] private Color onGridColor = Color.yellow;
-    [SerializeField] private Vector2 onGridMovement = new Vector2(0.05f, -0.15f);
     [SerializeField] private float fadeDuration = 2f;
 
     private readonly string colorPropertyName = "_Main_Color";
@@ -31,7 +30,6 @@ public class CameraZoomIn : MonoBehaviour
         // Turn off color
         maskMaterial.SetColor(colorPropertyName, offMainColor);
         maskMaterial.SetColor(gridPropertyName, offGridColor);
-        maskMaterial.SetVector(gridMovementName, Vector2.zero);
     }
 
     public void StartTheMovement()
@@ -50,13 +48,11 @@ public class CameraZoomIn : MonoBehaviour
             float t = Mathf.Clamp01(elapsed / fadeDuration);
             maskMaterial.SetColor(colorPropertyName, Color.Lerp(offMainColor, onMainColor, t));
             maskMaterial.SetColor(gridPropertyName, Color.Lerp(offGridColor, onGridColor, t));
-            maskMaterial.SetVector(gridMovementName, Vector2.Lerp(Vector2.zero, onGridMovement, t));
             yield return null;
         }
 
         maskMaterial.SetColor(colorPropertyName, onMainColor);
         maskMaterial.SetColor(gridPropertyName, onGridColor);
-        maskMaterial.SetVector(gridMovementName, onGridMovement);
     }
 
     public IEnumerator MoveCameraTowardsRobot()
