@@ -6,7 +6,7 @@ namespace Enemies
     {
         private void Update()
         {
-            transform.rotation = Quaternion.LookRotation(playerTrans.position - transform.position, Vector3.up);
+            transform.LookAt(new Vector3(playerTrans.position.x, transform.position.y, playerTrans.position.z), Vector3.up);
         }
 
         public override void TakeDamage(int currentHealth, int damageAmount)
