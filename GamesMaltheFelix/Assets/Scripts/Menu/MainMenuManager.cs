@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -48,6 +49,10 @@ public class MainMenuManager : MonoBehaviour
 
     [Header("Animation Settings")]
     public Animator playerAnimator;
+
+    [Header("Events")]
+
+    [SerializeField] private UnityEvent gameStartEvent; 
 
     [Header("UI Components")]
 
@@ -174,10 +179,12 @@ public class MainMenuManager : MonoBehaviour
         yield return new WaitForSeconds(2); // Imens vi zoomer ud spiller animationen
 
         
-        playerAnimator.SetTrigger("TurningOn"); // Trigger animationen
-        TimerManager.hasStarted = true; // Starter timeren
-        timerUI.SetActive(true); // Aktiverer timeren
-        musicBattle.Play(); // Spiller battle musikken
+        // playerAnimator.SetTrigger("TurningOn"); // Trigger animationen
+        // TimerManager.hasStarted = true; // Starter timeren
+        // timerUI.SetActive(true); // Aktiverer timeren
+        // musicBattle.Play(); // Spiller battle musikken
+        gameStartEvent?.Invoke(); // Kalder eventet for at starte spillet
+
 
 
 

@@ -7879,6 +7879,21 @@ MonoBehaviour:
   audioStartRobot: {fileID: 511468385}
   fadeMusicDuration: 1
   playerAnimator: {fileID: 2116412183}
+  gameStartEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   menuUI: {fileID: 209888404}
   timerUI: {fileID: 652843474}
   MenuUIFadeGroup: {fileID: 209888406}
