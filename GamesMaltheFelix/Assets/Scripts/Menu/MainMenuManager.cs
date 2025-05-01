@@ -43,6 +43,8 @@ public class MainMenuManager : MonoBehaviour
     public AudioSource musicMenu;
     public AudioSource audioStartRobot;
 
+    public AudioSource rainAndThunder;
+
     [Header("Audio Settings")]
     public float fadeMusicDuration = 1f;
 
@@ -57,6 +59,9 @@ public class MainMenuManager : MonoBehaviour
 
     public GameObject menuUI;
 
+    public GameObject startMenuUI; // Reference to the start menu UI GameObject
+    public GameObject settingsUI; // Reference to the settings UI GameObject
+
     public CanvasGroup MenuUIFadeGroup; // Reference to the CanvasGroup component for fading out the menu UI
 
     private float fadeDurationMenu = 1f; // Duration of the fade-out effect
@@ -70,6 +75,7 @@ public class MainMenuManager : MonoBehaviour
     void Start()
     {
         musicMenu.Play();
+        rainAndThunder.Play();
     }
     
     
@@ -100,9 +106,6 @@ public class MainMenuManager : MonoBehaviour
         {
             CameraRotationTarget.RotateAround(PlayerRotationtarget.position, Vector3.up, rotationSpeed * Time.deltaTime);
         }
-        
-        
-        
         // Camera settings
         if (!transitioning) return;
 
@@ -112,29 +115,19 @@ public class MainMenuManager : MonoBehaviour
         vCam.transform.position = Vector3.Lerp(startPos, zoomOutTarget.position, t);
         vCam.transform.rotation = Quaternion.Slerp(startRot, zoomOutTarget.rotation, t);
 
-
     }
 
-    // End Camera Settings
-    //
+   
 
-        public void OnTurnOnButtonPressed()
+
+        public void OnTurnOnButtonPressed() //TurnOnKnap
         {
             StartCoroutine(LoadStartScreen());
             StartCoroutine(FadeOutMenuUI()); // Fade out menu UI
             TurnOnHasBeenPressed = true;
-            
-            
         }
 
-
-
-    // Channel 1 til Default
-    // Channel 2 til at zoome ind på robotten
-
-
-
-    IEnumerator FadeOutMenuUI()
+    IEnumerator FadeOutMenuUI() // Fader Menuen ud
     {
         float t = 0;
         while (t < fadeDurationMenu)
@@ -164,33 +157,21 @@ public class MainMenuManager : MonoBehaviour
             musicMenu.volume = Mathf.Lerp(startVolume, 0, t / fadeMusicDuration);
             yield return null;
         }
-
         musicMenu.Stop();
         
         yield return new WaitForSeconds(5); // Venter på at opstartslyden stopper
        
         brain.ChannelMask = (OutputChannels)1; // Skifter til kamera i luften
-
-
-
         yield return new WaitForSeconds(2); // Imens vi zoomer ud spiller animationen
-
-        
-        
-        // TimerManager.hasStarted = true; // Starter timeren
-        // timerUI.SetActive(true); // Aktiverer timeren
-        // musicBattle.Play(); // Spiller battle musikken
         gameStartEvent?.Invoke(); // Kalder eventet for at starte spillet
-
-
-
-
-
-
-
     }
 
-
+    public void SwitchSettings()
+    {
+       startMenuUI.SetActive(!startMenuUI.activeSelf); // Skifter mellem at vise og skjule settings menuen
+        settingsUI.SetActive(!settingsUI.activeSelf); // Skifter mellem at vise og skjule settings menuen
+        Debug.Log("Settings menu toggled.");
+    }
     public void OnExitButtonPressed()
     {
         Application.Quit();
