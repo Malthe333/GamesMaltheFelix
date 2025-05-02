@@ -1145,7 +1145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b290196645284db48bb030fc64d46d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  juiceEffect: {fileID: 1178346238}
+  juiceEffect: {fileID: 8563942156425551287, guid: 71f34731bb7637249b0b4bdaf96506a3, type: 3}
   juiceLife: 1.2
   afterJuiceEvent:
     m_PersistentCalls:
@@ -6973,11 +6973,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adeac6ab175e0674186c1e53411eedc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1178346238 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8563942156425551287, guid: 71f34731bb7637249b0b4bdaf96506a3, type: 3}
-  m_PrefabInstance: {fileID: 8192308841603272765}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1185598393
 GameObject:
   m_ObjectHideFlags: 0
@@ -13235,9 +13230,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5011048252526164339, guid: 71f34731bb7637249b0b4bdaf96506a3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8563942156425551287, guid: 71f34731bb7637249b0b4bdaf96506a3, type: 3}
       propertyPath: m_Name
       value: Echo Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563942156425551287, guid: 71f34731bb7637249b0b4bdaf96506a3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
