@@ -174,7 +174,11 @@ public class MainMenuManager : MonoBehaviour
     }
     public void OnExitButtonPressed()
     {
+#if UNITY_WEBGL
+
+#else
         Application.Quit();
+#endif
     }
 
     
