@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Damageable
+  - Camera1
+  - Camera2
+  - Camera3
   layers:
   - Default
   - TransparentFX
